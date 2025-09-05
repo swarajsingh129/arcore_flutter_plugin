@@ -27,16 +27,21 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 34
 
+    // <<-- ADD THIS LINE to fix "Namespace not specified" error
+    namespace 'com.difrancescogianmarco.arcore_flutter_plugin'
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
     defaultConfig {
-        minSdkVersion 24
+        // modern shorthand for minSdk (works with this AGP version)
+        minSdk 24
+        targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // Sceneform libraries use language constructs from Java 8.
-    // Add these compile options if targeting minSdkVersion < 26.
+    // Sceneform libraries use Java 8 language features
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
